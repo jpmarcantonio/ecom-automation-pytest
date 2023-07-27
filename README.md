@@ -127,7 +127,7 @@ python3 -m pytest tests
 Or run it with report generation
 ```commandline
 python3 -m pytest tests --html=./report.html
-
+```
 Try the runner.sh script.
 ```commandline
 bash runner.sh demostore_automation/tests
