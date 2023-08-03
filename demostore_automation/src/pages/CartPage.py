@@ -39,3 +39,6 @@ class CartPage(CartPageLocators):
 
     def click_on_proceed_to_checkout(self):
         self.sl.wait_and_click(self.PROCEED_TO_CHECKOUT_BTN)
+
+    def verify_coupon_error_message(self, exp_err):
+        self.sl.wait_until_element_contains_text(self.COUPON_ERROR_MSG, exp_err)
