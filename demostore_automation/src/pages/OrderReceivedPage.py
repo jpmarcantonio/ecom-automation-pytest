@@ -9,7 +9,7 @@ class OrderReceivedPage(OrderReceivedPageLocators):
         self.sl = SeleniumExtended(self.driver)
 
     def verify_order_received_page_loaded(self):
-        self.sl.wait_until_element_contains_text(self.PAGE_MAIN_HEADER, "Order received")
+        self.sl.wait_until_element_contains_text(self.PAGE_MAIN_HEADER, "Order received", timeout=10)
 
     def get_order_number(self):
         return self.sl.wait_and_get_text(self.ORDER_NUMBER)
