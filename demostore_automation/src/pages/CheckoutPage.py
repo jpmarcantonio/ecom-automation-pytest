@@ -68,4 +68,4 @@ class CheckoutPage(CheckoutPageLocators):
         self.select_billing_state(state=state)
 
     def click_place_order(self):
-        self.sl.wait_and_click(self.PLACE_ORDER_BTN)
+        self.sl.wait_and_click(self.PLACE_ORDER_BTN, timeout=10)

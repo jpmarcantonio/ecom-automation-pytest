@@ -9,3 +9,5 @@ class CartPageLocators:
     APPLY_COUPON_BTN = (By.CSS_SELECTOR, 'button[name="apply_coupon"]')
 
     PROCEED_TO_CHECKOUT_BTN = (By.CSS_SELECTOR, 'a.checkout-button')
+
+    COUPON_ERROR_MSG = (By.CSS_SELECTOR, 'ul.woocommerce-error li')

@@ -18,6 +18,8 @@ class MainConfigs:
             return "ssqa100"
         elif filter.upper() == '50_OFF':
             return "JFOADIUFHADF"
+        elif filter.upper() == 'EXPIRED_COUPON':
+            return "expired50"
         else:
             raise Exception(f"Unknown value for parameter 'filter'. filter={filter}")
 
