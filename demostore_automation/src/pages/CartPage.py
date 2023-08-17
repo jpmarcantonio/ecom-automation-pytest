@@ -31,7 +31,7 @@ class CartPage(CartPageLocators):
         self.sl.wait_and_input_text(self.COUPON_FIELD, str(coupon_code))
 
     def click_apply_coupon(self):
-        self.sl.wait_and_click(self.APPLY_COUPON_BTN)
+        self.sl.wait_and_click(self.APPLY_COUPON_BTN, timeout=10)
 
     def apply_coupon(self, coupon_code):
         self.input_coupon(coupon_code)
