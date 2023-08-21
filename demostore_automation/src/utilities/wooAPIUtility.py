@@ -22,7 +22,7 @@ class WooAPIUtility:
 
     def assert_status_code(self):
         assert self.status_code == self.expected_status_code, f"Bad Status code." \
-          f"Expected {self.expected_status_code}, Actual status code: {self.status_code}," \
+          f"Expected {self.expected_status_code}, Actual status code: {self.status_code}, " \
           f"URL: {self.url}, Response Json: {self.rs_json}"
 
     def post(self, wc_endpoint, params=None, expected_status_code=200):
