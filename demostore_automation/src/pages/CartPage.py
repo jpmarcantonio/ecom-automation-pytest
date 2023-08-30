@@ -19,7 +19,6 @@ class CartPage(CartPageLocators):
         self.driver.get(cart_url)
 
     def get_all_product_names_in_cart(self):
-
         product_name_elements = self.sl.wait_and_get_elements(self.PRODUCT_NAMES_IN_CART)
         product_names = [i.text for i in product_name_elements]
         # product_names = []
@@ -42,3 +41,6 @@ class CartPage(CartPageLocators):
 
     def verify_coupon_error_message(self, exp_err):
         self.sl.wait_until_element_contains_text(self.COUPON_ERROR_MSG, exp_err)
+
+    def verify_item_in_cart_by_visible_text(self, exp_text):
+        self.sl.wait_until_element_contains_text(self.PRODUCT_NAMES_IN_CART, exp_text)

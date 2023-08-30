@@ -1,5 +1,6 @@
 
 import pytest
+import logging as logger
 from demostore_automation.src.pages.ProductPage import ProductPage
 from demostore_automation.src.pages.CartPage import CartPage
 
@@ -27,9 +28,12 @@ class TestVariableProductAddToCartPDP:
                None
            """
 
+        logger.info("Testing 'add to cart' functionality for a variable product...")
+
         # test data
         color_to_select = 'Blue'
         logo_to_select = 'Yes'
+        expected_text = 'Hoodie - Blue, Yes'
 
         # go to product page for a variable product
         product_page = ProductPage(self.driver)
@@ -47,6 +51,9 @@ class TestVariableProductAddToCartPDP:
         # go to cart
         product_page.go_to_cart_page()
 
-        # verify item has been added to cart
+        # verify cart page has loaded
         cart_page = CartPage(self.driver)
         cart_page.click_apply_coupon()
+
+        # verify items are in cart
+        cart_page.verify_item_in_cart_by_visible_text(expected_text)
