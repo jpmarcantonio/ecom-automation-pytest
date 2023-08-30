@@ -15,6 +15,21 @@ class GenericOrderHelper:
         self.product_dao = ProductsDAO
 
     def create_order(self, additional_args=None):
+        """
+          Create an order using the provided payload and additional arguments.
+
+          This function creates an order using a pre-defined JSON payload template loaded from a file. If additional
+          arguments are provided, they are merged with the payload. If the additional arguments do not contain line
+          items information, a random product is selected from the database and added as a line item to the order payload.
+
+          Args:
+              self (object): The instance of the class containing this method.
+              additional_args (dict, optional): Additional arguments to merge with the order payload. If provided, it should
+                  be a dictionary containing keys and values to be added or updated in the order payload.
+
+          Returns:
+              dict: A dictionary containing the response from the order API after attempting to create the order.
+          """
 
         payload_template = os.path.join(self.cur_file_dir, '..', 'data', 'create_order_payload.json')
         with open(payload_template, 'r') as f:
@@ -75,7 +90,8 @@ class GenericOrderHelper:
 
         # get the line items only (exclude shipping)
         line_items = [i for i in line_info if i['order_item_type'] == 'line_item']
-        assert len(line_items) == len(exp_products), f"Expected{len(exp_products)} line item but found {len(line_items)}. Order id: {order_id}"
+        assert len(line_items) == len(exp_products), f"Expected{len(exp_products)} line item but found {len(line_items)}" \
+                                                     f" Order id: {order_id}"
 
         # get list of product ids in the response
         api_product_ids = [i['product_id'] for i in order_json['line_items']]
