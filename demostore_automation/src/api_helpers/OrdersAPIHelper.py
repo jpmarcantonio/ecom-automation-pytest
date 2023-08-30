@@ -2,15 +2,17 @@
 from demostore_automation.src.utilities.wooAPIUtility import WooAPIUtility
 
 
-class ProductsAPIHelper:
+class OrdersAPIHelper:
 
     def __init__(self):
         self.woo_api_utility = WooAPIUtility()
 
-    def call_get_product_py_id(self, product_id):
+    def call_create_order(self, payload, expected_status_code=201):
         """
-        Calls the 'get product' endpoint by product id.
-        Args: product_id:
+        Calls the 'create order' endpoint.
+        Args:
+            payload:
+            expected_status_code: default is 201
         :return:
         """
-        return self.woo_api_utility.get(f"products/{product_id}", expected_status_code=200)
+        return self.woo_api_utility.post(f"orders", params=payload, expected_status_code=expected_status_code)

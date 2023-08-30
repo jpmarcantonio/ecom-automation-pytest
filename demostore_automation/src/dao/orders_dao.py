@@ -1,25 +1,23 @@
 
 
 from demostore_automation.src.utilities.dbUtility import DBUtility
-import random
 import logging as logger
 
-class ProductsDAO:
+class OrdersDAO:
 
     def __init__(self):
         self.db_helper = DBUtility()
 
-    def get_random_product_from_db(self, qty=1):
+    def get_order_lines_by_order_id(self, order_id):
         """
-        Gets a random product from db.
-        :param qty: number of products to get
+        Given an order id, this function will get all order lines for the order.
+        :param order_id:
         :return:
         """
 
-        logger.info(f"Getting random products from db. qty= {qty}")
-        sql = f"""SELECT ID, post_title, post_name FROM {self.db_helper.database}.{self.db_helper.table_prefix}posts 
-        WHERE post_type = 'product' LIMIT 500;"""
+        logger.info(f"Getting order lines by order id. Order id = {order_id}")
+        sql = f"""SELECT * FROM
+                    {self.db_helper.database}.{self.db_helper.table_prefix}woocommerce_order_items
+                    WHERE order_id = {order_id};"""
 
-        rs_sql = self.db_helper.execute_select(sql)
-
-        return random.sample(rs_sql, int(qty))
+        return self.db_helper.execute_select(sql)
