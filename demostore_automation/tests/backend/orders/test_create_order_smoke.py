@@ -38,9 +38,7 @@ def test_create_paid_order_guest_user():
 
     api_order_info = generic_order_helper.create_order(additional_args=args)
 
-    # verify the order is created by checking the database
+    # verify the order is created by checking the database and API response
     expected_cust_id = 0  # because we are using guest user
     expected_products = [{'product_id': product_id}]
     generic_order_helper.verify_order_is_created(api_order_info, expected_cust_id, expected_products)
-
-    # verify the order is created by calling API

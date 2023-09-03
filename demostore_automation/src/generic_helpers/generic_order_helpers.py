@@ -2,6 +2,7 @@
 import logging as logger
 import json
 import os.path
+from datetime import datetime, timedelta
 from demostore_automation.src.api_helpers.OrdersAPIHelper import OrdersAPIHelper
 from demostore_automation.src.dao.orders_dao import OrdersDAO
 from demostore_automation.src.dao.products_dao import ProductsDAO
@@ -100,3 +101,11 @@ class GenericOrderHelper:
             exp_id = product['product_id']
             assert exp_id in api_product_ids, f"Created order does not have at least 1 expected product." \
                                               f"Product id: {product['product_id']}. Order id: {order_id}"
+
+        # verify order created in API by checking date_paid was within 10 seconds
+        date_paid_response = order_json['date_paid']
+        timestamp = datetime.fromisoformat(date_paid_response)
+        current_time = datetime.utcnow()
+        time_difference = current_time - timestamp
+        assert time_difference <= timedelta(seconds=10), f"Error validating order creation in API. Looking for date_paid " \
+                                                         f" within the past 10 second. None found within specified time."
