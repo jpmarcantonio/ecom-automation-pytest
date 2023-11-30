@@ -15,3 +15,6 @@ class MyAccountSignedInPage(MyAccountSignedInPageLocators):
         :return:
         """
         self.sl.wait_until_element_is_visible(self.LEFT_NAV_LOGOUT_BTN)
+
+    def logout_user(self):
+        self.sl.wait_and_click(self.LEFT_NAV_LOGOUT_BTN)
