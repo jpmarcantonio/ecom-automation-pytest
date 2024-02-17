@@ -17,3 +17,6 @@ class  GenericProductsHelper:
         rs_api = self.products_api_helper.call_create_product(payload=payload, expected_status_code=201)
 
         return rs_api
+
+    def get_product_detail_via_api(self, product_id):
+        return self.products_api_helper.call_get_product_py_id(product_id)
