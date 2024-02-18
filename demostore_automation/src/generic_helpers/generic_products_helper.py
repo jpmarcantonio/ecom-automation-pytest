@@ -8,11 +8,18 @@ class  GenericProductsHelper:
     def __init__(self):
         self.products_api_helper = ProductsAPIHelper()
 
-    def create_a_product(self):
-        rand_str = generate_random_string(20)
+    def create_a_product(self, product_name=None, type='simple'):
         payload = dict()
-        payload['name'] = rand_str
-        payload['type'] = 'simple'
+        if product_name == None:
+            rand_str = generate_random_string(20)
+            # payload = dict()
+            payload['name'] = rand_str
+        else:
+            payload['name'] = product_name
+
+        payload['type'] = type
+
+        # todo: implement assertion error to check that user's given product type is valid. Options: simple, grouped, external and variable.
 
         rs_api = self.products_api_helper.call_create_product(payload=payload, expected_status_code=201)
 

@@ -1,5 +1,5 @@
 """
-Module for random unitilies. Helpful functions go here.
+Module for random utilities. Helpful functions go here.
 Example:
     generating random email
 
@@ -31,11 +31,6 @@ def generate_random_email_and_password(domain='supersqa.com', email_prefix='test
     logger.debug(f"Randomly generated email and password: {random_info}")
 
     return random_info
-
-
-if __name__ == '__main__':
-    print(generate_random_email_and_password())
-
 
 def generate_random_string(string_length=10):
     random_string = ''.join(random.choices(string.ascii_lowercase, k=string_length))
