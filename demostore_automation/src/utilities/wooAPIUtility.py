@@ -2,7 +2,6 @@
 from demostore_automation.src.configs.MainConfigs import MainConfigs
 from demostore_automation.src.utilities.credentialsUtility import CredentialsUtility
 from woocommerce import API
-import os
 import logging as logger
 
 class WooAPIUtility:
@@ -83,11 +82,3 @@ class WooAPIUtility:
         logger.debug(f"DELETE API response: {self.rs_json}")
 
         return self.rs_json
-
-
-if __name__ == '__main__':
-
-    obj = WooAPIUtility()
-    rs_api = obj.get('products')
-    print(rs_api)
-    import pdb; pdb.set_trace()
